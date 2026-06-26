@@ -79,8 +79,9 @@ function GlobeInner({ trails, planetArcs, location, shellVisibility, onSelectTra
   const viewerRef = useRef<Cesium.Viewer | null>(null);
 
   // Cache buster for Vercel CDN issue
-  // The edge node in India might have a corrupted cache for this specific chunk hash.
-  
+  useEffect(() => {
+    console.debug('Globe initialized with cache buster v2');
+  }, []);
   // Track previous trails to know what to add/remove
   const prevTrails = useRef<SatelliteTrail[]>([]);
   const [stars, setStars] = useState<StarPoint[]>([]);
