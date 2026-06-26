@@ -2,7 +2,6 @@
 
 const nextConfig = {
   reactStrictMode: true,
-  distDir: '.next-v2',
   // Cesium's static assets are served from /static/cesium/* — see CESIUM_BASE_URL
   // set in app/layout.tsx and components/Globe.tsx.
   webpack: (config, { isServer, webpack }) => {
