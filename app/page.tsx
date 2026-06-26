@@ -25,16 +25,7 @@ import FamousPassesPanel from '@/components/FamousPassesPanel';
 import ShareButton from '@/components/ShareButton';
 import Toast from '@/components/Toast';
 
-// Globe pulls in CesiumJS, which is large and browser-only — load it
-// client-side only, with a lightweight loading state.
-const Globe = dynamic(() => import('@/components/Globe'), {
-  ssr: false,
-  loading: () => (
-    <div className="flex h-full w-full items-center justify-center bg-space-bg">
-      <p className="text-sm text-text-secondary">Loading globe…</p>
-    </div>
-  ),
-});
+import Globe from '@/components/Globe';
 
 const DEFAULT_WINDOW_HOURS = { start: -6, end: 0 };
 

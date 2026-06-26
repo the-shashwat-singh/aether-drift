@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "postinstall": "mkdir -p public/cesium && cp -R node_modules/cesium/Build/Cesium/* public/cesium/",
+    "postinstall": "mkdir -p public/cesium && cp -rL node_modules/cesium/Build/Cesium/Workers public/cesium/Workers && cp -rL node_modules/cesium/Build/Cesium/Assets public/cesium/Assets && cp -rL node_modules/cesium/Build/Cesium/Widgets public/cesium/Widgets && cp -rL node_modules/cesium/Build/Cesium/ThirdParty public/cesium/ThirdParty",
     "prewarm": "ts-node --project tsconfig.scripts.json scripts/prewarmDemoCities.ts"
   },
   "dependencies": {

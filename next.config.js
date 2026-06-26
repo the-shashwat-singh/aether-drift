@@ -4,9 +4,16 @@ const nextConfig = {
   reactStrictMode: true,
   // Cesium's static assets are served from /static/cesium/* — see CESIUM_BASE_URL
   // set in app/layout.tsx and components/Globe.tsx.
-  webpack: (config, { isServer }) => {
-    if (!isServer) {
+  webpack: (config, { isServer, webpack }) => {
+    config.plugins.push(
+      new webpack.DefinePlugin({
+        CESIUM_BASE_URL: JSON.stringify('/cesium'),
+      })
+    );
+    config.output.sourcePrefix = '';
+    config.module.noParse = /\/cesium\/Build\/Cesium\/Cesium\.js$/;
 
+    if (!isServer) {
       config.module.rules.push({
         test: /\.js$/,
         include: /node_modules[\\/]cesium/,
