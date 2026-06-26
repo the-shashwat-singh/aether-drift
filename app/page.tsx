@@ -76,14 +76,6 @@ function PageInner() {
   const urlLoc = searchParams.get('loc');
   const urlT = searchParams.get('t');
 
-  if (!isMounted) {
-    return (
-      <div className="flex h-screen w-screen items-center justify-center bg-space-bg">
-        <p className="text-sm text-text-secondary">Loading Aether Drift…</p>
-      </div>
-    );
-  }
-
   const { location, setLocation } = useLocation(
     urlLat && urlLon
       ? {
@@ -249,6 +241,14 @@ function PageInner() {
     if (typeof window === 'undefined') return '';
     return window.location.href;
   }, []);
+
+  if (!isMounted) {
+    return (
+      <div className="flex h-screen w-screen items-center justify-center bg-space-bg">
+        <p className="text-sm text-text-secondary">Loading Aether Drift…</p>
+      </div>
+    );
+  }
 
   return (
     <main className="relative h-screen w-screen overflow-hidden bg-space-bg">
