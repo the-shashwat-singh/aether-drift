@@ -75,7 +75,14 @@ function trailToCartesianArray(
 }
 
 function GlobeInner({ trails, planetArcs, location, shellVisibility, onSelectTrail }: GlobeProps) {
+  const cesiumContainer = useRef<HTMLDivElement>(null);
   const viewerRef = useRef<Cesium.Viewer | null>(null);
+
+  // Cache buster for Vercel CDN issue
+  // The edge node in India might have a corrupted cache for this specific chunk hash.
+  
+  // Track previous trails to know what to add/remove
+  const prevTrails = useRef<EnrichedSatelliteTrail[]>([]);
   const [stars, setStars] = useState<StarPoint[]>([]);
   const [cesiumReady, setCesiumReady] = useState(false);
   const [creditContainer] = useState<HTMLDivElement | undefined>(() =>
