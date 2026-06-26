@@ -82,7 +82,7 @@ function GlobeInner({ trails, planetArcs, location, shellVisibility, onSelectTra
   // The edge node in India might have a corrupted cache for this specific chunk hash.
   
   // Track previous trails to know what to add/remove
-  const prevTrails = useRef<EnrichedSatelliteTrail[]>([]);
+  const prevTrails = useRef<SatelliteTrail[]>([]);
   const [stars, setStars] = useState<StarPoint[]>([]);
   const [cesiumReady, setCesiumReady] = useState(false);
   const [creditContainer] = useState<HTMLDivElement | undefined>(() =>
