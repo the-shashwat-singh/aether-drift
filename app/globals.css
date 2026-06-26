@@ -1,0 +1,94 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-bg: #050a14;
+  --color-sidebar: #0a1628;
+  --color-border: #1e3a5f;
+  --color-btn: #1e3a5f;
+  --color-btn-hover: #2a5080;
+  --color-text-primary: #e8f4fd;
+  --color-text-secondary: #6b9ec7;
+  --color-iss: #ff6b35;
+  --color-leo: #4fc3f7;
+  --color-meo: #81c784;
+  --color-geo: #ffd54f;
+  --color-planet: #e0e0e0;
+}
+
+html,
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Custom scrollbar — keep it dark and unobtrusive, matches the deep-space aesthetic */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-btn-hover);
+}
+
+/* Respect reduced-motion preference globally */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Visible keyboard focus ring, deep-space tinted */
+:focus-visible {
+  outline: 2px solid var(--color-leo);
+  outline-offset: 2px;
+}
+
+/* Cesium widget overrides to fit the dark theme (credit/logo container etc.) */
+.cesium-viewer-bottom {
+  display: none !important;
+}
+.cesium-widget-credits {
+  display: none !important;
+}
+
+.pulse-ring-target {
+  position: relative;
+}
+.pulse-ring-target::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: inherit;
+  pointer-events: none;
+}
+.edu-mode .pulse-ring-target::after {
+  animation: pulseRing 1.8s ease-in-out infinite;
+  border: 1px solid rgba(255, 213, 79, 0.6);
+}
+
+@keyframes pulseRing {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 213, 79, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(255, 213, 79, 0);
+  }
+}
