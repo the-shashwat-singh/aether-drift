@@ -1,8 +1,4 @@
 /** @type {import('next').NextConfig} */
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const path = require('path');
-
-const cesiumSource = path.join(__dirname, 'node_modules/cesium/Build/Cesium');
 
 const nextConfig = {
   reactStrictMode: true,
@@ -10,16 +6,6 @@ const nextConfig = {
   // set in app/layout.tsx and components/Globe.tsx.
   webpack: (config, { isServer }) => {
     if (!isServer) {
-      config.plugins.push(
-        new CopyWebpackPlugin({
-          patterns: [
-            { from: path.join(cesiumSource, 'Workers'), to: '../public/cesium/Workers', info: { minimized: true } },
-            { from: path.join(cesiumSource, 'ThirdParty'), to: '../public/cesium/ThirdParty', info: { minimized: true } },
-            { from: path.join(cesiumSource, 'Assets'), to: '../public/cesium/Assets', info: { minimized: true } },
-            { from: path.join(cesiumSource, 'Widgets'), to: '../public/cesium/Widgets', info: { minimized: true } },
-          ],
-        })
-      );
 
       config.module.rules.push({
         test: /\.js$/,
