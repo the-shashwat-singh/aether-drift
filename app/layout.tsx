@@ -32,6 +32,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             __html: `window.CESIUM_BASE_URL = '/cesium';`,
           }}
         />
+        {/* Load Cesium.js externally to bypass SWC minifier bug causing octal escape SyntaxErrors */}
+        <script src="/cesium/Cesium.js" async={false}></script>
+        <link rel="stylesheet" href="/cesium/Widgets/widgets.css" />
       </head>
       <body className="bg-space-bg text-text-primary font-sans antialiased overflow-x-hidden">
         {children}
