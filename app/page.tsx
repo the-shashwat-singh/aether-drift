@@ -63,6 +63,11 @@ function computeNextISSPass(trails: SatelliteTrail[]): NextISSPass | null {
 }
 
 function PageInner() {
+  const [isMounted, setIsMounted] = useState(false);
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   const searchParams = useSearchParams();
   const router = useRouter();
 
@@ -70,6 +75,14 @@ function PageInner() {
   const urlLon = searchParams.get('lon');
   const urlLoc = searchParams.get('loc');
   const urlT = searchParams.get('t');
+
+  if (!isMounted) {
+    return (
+      <div className="flex h-screen w-screen items-center justify-center bg-space-bg">
+        <p className="text-sm text-text-secondary">Loading Aether Drift…</p>
+      </div>
+    );
+  }
 
   const { location, setLocation } = useLocation(
     urlLat && urlLon
